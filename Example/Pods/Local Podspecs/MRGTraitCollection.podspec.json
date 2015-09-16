@@ -1,0 +1,35 @@
+{
+  "name": "MRGTraitCollection",
+  "version": "0.1.0",
+  "summary": "Backward compatibility layer for UITraitCollection in iOS 7.",
+  "description": "",
+  "homepage": "http://open.mirego.com",
+  "license": "BSD 3-Clause",
+  "authors": {
+    "Mirego": "info@mirego.com"
+  },
+  "source": {
+    "git": "https://github.com/Mirego/MRGTraitCollection.git",
+    "tag": "0.1.0"
+  },
+  "social_media_url": "https://twitter.com/Mirego",
+  "platforms": {
+    "ios": "7.0"
+  },
+  "requires_arc": true,
+  "source_files": "Pod/Classes/**/*",
+  "resource_bundles": {
+    "MRGTraitCollection": [
+      "Pod/Assets/*.png"
+    ]
+  },
+  "private_header_files": "Pod/Classes/**/*_Private.h",
+  "dependencies": {
+    "MAObjCRuntime": [
+      "~> 0.0"
+    ],
+    "JRSwizzle": [
+      "~> 1.0"
+    ]
+  }
+}

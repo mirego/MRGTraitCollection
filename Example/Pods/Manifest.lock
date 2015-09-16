@@ -1,0 +1,20 @@
+PODS:
+  - JRSwizzle (1.0)
+  - MAObjCRuntime (0.0.1)
+  - MRGTraitCollection (0.1.0):
+    - JRSwizzle (~> 1.0)
+    - MAObjCRuntime (~> 0.0)
+
+DEPENDENCIES:
+  - MRGTraitCollection (from `../`)
+
+EXTERNAL SOURCES:
+  MRGTraitCollection:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
+  MAObjCRuntime: a6a1d95acbfa3784d66cb35bd42904e47943b488
+  MRGTraitCollection: 4bdcc080fa70b8f3e14ddccee57a6a538b6410f1
+
+COCOAPODS: 0.38.2
