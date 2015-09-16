@@ -13,10 +13,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'MRGTraitCollection' => ['Pod/Assets/*.png']
-  }
-
+  
   s.private_header_files = 'Pod/Classes/**/*_Private.h'
   s.dependency 'MAObjCRuntime', '~> 0.0'
   s.dependency 'JRSwizzle', '~> 1.0'
