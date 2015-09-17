@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BF1A054D04E9EB97936F2BD7"
+               BlueprintIdentifier = "0D671803B30361F1BE7735D3"
                BuildableName = "libMRGTraitCollection.a"
                BlueprintName = "MRGTraitCollection"
                ReferencedContainer = "container:Pods.xcodeproj">
