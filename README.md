@@ -1,6 +1,6 @@
 # MRGTraitCollection
 
-[![CI Status](http://img.shields.io/travis/Francois Lambert/MRGTraitCollection.svg?style=flat)](https://travis-ci.org/Mirego/MRGTraitCollection)
+[![CI Status](http://img.shields.io/travis/mirego/MRGTraitCollection.svg?style=flat)](https://travis-ci.org/mirego/MRGTraitCollection)
 [![Version](https://img.shields.io/cocoapods/v/MRGTraitCollection.svg?style=flat)](http://cocoapods.org/pods/MRGTraitCollection)
 [![License](https://img.shields.io/cocoapods/l/MRGTraitCollection.svg?style=flat)](http://cocoapods.org/pods/MRGTraitCollection)
 [![Platform](https://img.shields.io/cocoapods/p/MRGTraitCollection.svg?style=flat)](http://cocoapods.org/pods/MRGTraitCollection)
