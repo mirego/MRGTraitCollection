@@ -1,6 +1,6 @@
 {
   "name": "MRGTraitCollection",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "summary": "Backward compatibility layer for UITraitCollection in iOS 7.",
   "homepage": "http://open.mirego.com",
   "license": "BSD 3-Clause",
@@ -9,7 +9,7 @@
   },
   "source": {
     "git": "https://github.com/Mirego/MRGTraitCollection.git",
-    "tag": "0.1.0"
+    "tag": "0.1.1"
   },
   "social_media_url": "https://twitter.com/Mirego",
   "platforms": {

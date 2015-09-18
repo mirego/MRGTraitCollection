@@ -6,4 +6,6 @@ end
 
 target 'MRGTraitCollection_Tests', :exclusive => true do
   pod "MRGTraitCollection", :path => "../"
+
+  
 end

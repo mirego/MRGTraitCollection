@@ -1,7 +1,7 @@
 PODS:
   - JRSwizzle (1.0)
   - MAObjCRuntime (0.0.1)
-  - MRGTraitCollection (0.1.0):
+  - MRGTraitCollection (0.1.1):
     - JRSwizzle (~> 1.0)
     - MAObjCRuntime (~> 0.0)
 
@@ -15,6 +15,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
   MAObjCRuntime: a6a1d95acbfa3784d66cb35bd42904e47943b488
-  MRGTraitCollection: 0d539506d7bf001d890cb288471e0ff36dea3cfc
+  MRGTraitCollection: d1373e63992c50b98bc382092eda32e61db81f11
 
 COCOAPODS: 0.38.2
