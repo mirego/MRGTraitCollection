@@ -43,7 +43,7 @@
     traitCollection.displayScale = [self scale];
     
     switch (traitCollection.userInterfaceIdiom) {
-        case UIUserInterfaceIdiomUnspecified:
+        default:
             break;
             
         case UIUserInterfaceIdiomPhone:

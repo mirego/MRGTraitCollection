@@ -86,6 +86,10 @@
             return @"Phone";
         case UIUserInterfaceIdiomPad:
             return @"Pad";
+#ifdef __IPHONE_9_1
+        case UIUserInterfaceIdiomTV:
+            return @"TV";
+#endif
     }
 }
 
