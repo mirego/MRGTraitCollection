@@ -60,8 +60,8 @@
 }
 
 - (void)MRGTraitEnvironment_UIViewController_setTraitCollection:(UITraitCollection *)traitCollection {
-    UITraitCollection *previousTraitCollection = [self MRGTraitEnvironment_UIViewController_getTraitCollection];
-    if (![previousTraitCollection isEqual:traitCollection]) {
+    UITraitCollection *previousTraitCollection = [self traitCollection];
+    if ((previousTraitCollection == traitCollection) || [previousTraitCollection isEqual:traitCollection]) {
         return;
     }
     
@@ -94,7 +94,7 @@
 - (void)MRGTraitEnvironment_UIViewController_loadView {
     // Notify view
     [self MRGTraitEnvironment_UIViewController_loadView];
-    [self.view MRGTraitEnvironment_UIView_setTraitCollection:[self MRGTraitEnvironment_UIViewController_getTraitCollection]];
+    [self.view MRGTraitEnvironment_UIView_setTraitCollection:[self traitCollection]];
 }
 
 static UITraitCollection* MRGTraitEnvironment_UIViewController_getTraitCollection(UIViewController *self, SEL _cmd) {
@@ -115,7 +115,7 @@ static void MRGTraitEnvironment_UIViewController_setOverrideTraitCollectionForCh
 
 static UITraitCollection* MRGTraitEnvironment_UIViewController_overrideTraitCollectionForChildViewController(UIViewController *self, SEL _cmd, UIViewController *childViewController) {
     // FIXME Retrieve override for child ViewController and merge it with stored
-    return [self MRGTraitEnvironment_UIViewController_getTraitCollection];
+    return [self traitCollection];
 }
 
 + (void)load {

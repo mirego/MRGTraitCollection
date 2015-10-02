@@ -60,8 +60,8 @@
 }
 
 - (void)MRGTraitEnvironment_UIView_setTraitCollection:(UITraitCollection *)traitCollection {
-    UITraitCollection *previousTraitCollection = [self MRGTraitEnvironment_UIView_getTraitCollection];
-    if (![previousTraitCollection isEqual:traitCollection]) {
+    UITraitCollection *previousTraitCollection = [self traitCollection];
+    if ((previousTraitCollection == traitCollection) || [previousTraitCollection isEqual:traitCollection]) {
         return;
     }
     

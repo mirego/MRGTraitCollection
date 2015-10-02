@@ -42,7 +42,10 @@
         return self;
     }
     
-    [self MRGTraitEnvironment_UIView_setTraitCollection:(id)[MRGTraitCollection new]];
+    if ([self screen]) {
+        [self MRGTraitEnvironment_UIView_setTraitCollection:[self.screen traitCollection]];
+    }
+    
     return self;
 }
 
@@ -51,32 +54,32 @@
         return self;
     }
     
-    [self MRGTraitEnvironment_UIView_setTraitCollection:(id)[MRGTraitCollection new]];
+    if ([self screen]) {
+        [self MRGTraitEnvironment_UIView_setTraitCollection:[self.screen traitCollection]];
+    }
+    
     return self;
 }
 
-- (UITraitCollection *)MRGTraitEnvironment_UIWindow_getTraitCollection {
-    return objc_getAssociatedObject(self, @selector(MRGTraitEnvironment_UIWindow_getTraitCollection));
-}
-
 - (void)MRGTraitEnvironment_UIWindow_setTraitCollection:(UITraitCollection *)traitCollection {
-    UITraitCollection *previousTraitCollection = [self MRGTraitEnvironment_UIWindow_getTraitCollection];
-    if (![previousTraitCollection isEqual:traitCollection]) {
+    UITraitCollection *previousTraitCollection = [self traitCollection];
+    [self MRGTraitEnvironment_UIWindow_setTraitCollection:traitCollection];
+    if ((previousTraitCollection == traitCollection) || [previousTraitCollection isEqual:traitCollection]) {
         return;
     }
     
-    // Store traitCollection
-    objc_setAssociatedObject(self, @selector(MRGTraitEnvironment_UIWindow_getTraitCollection), traitCollection, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    
     // Notify rootViewController
-    [self.rootViewController MRGTraitEnvironment_UIViewController_setTraitCollection:traitCollection];
-    
-    [self traitCollectionDidChange:previousTraitCollection];
+    [self.rootViewController MRGTraitEnvironment_UIViewController_setTraitCollection:[self traitCollection]];
+}
+
+- (void)MRGTraitEnvironment_UIWindow_setScreen:(UIScreen *)screen {
+    [self MRGTraitEnvironment_UIWindow_setScreen:screen];
+    [self MRGTraitEnvironment_UIView_setTraitCollection:[self.screen traitCollection]];
 }
 
 - (void)MRGTraitEnvironment_UIWindow_setRootViewController:(UIViewController *)rootViewController {
     [self MRGTraitEnvironment_UIWindow_setRootViewController:rootViewController];
-    [self.rootViewController MRGTraitEnvironment_UIViewController_setTraitCollection:[self MRGTraitEnvironment_UIWindow_getTraitCollection]];
+    [self.rootViewController MRGTraitEnvironment_UIViewController_setTraitCollection:[self traitCollection]];
 }
 
 - (void)MRGTraitEnvironment_UIWindow_becomeKeyWindow {
@@ -93,11 +96,7 @@
 
 - (void)MRGTraitEnvironment_UIWindow_willChangeStatusBarOrientationNotification:(NSNotification *)notification {
     UITraitCollection *traitCollection = [[self screen] MRGTraitEnvironment_UIScreen_traitCollectionForInterfaceOrientation:[[notification userInfo][UIApplicationStatusBarOrientationUserInfoKey] integerValue]];
-    [self MRGTraitEnvironment_UIWindow_setTraitCollection:traitCollection];
-}
-
-static UITraitCollection* MRGTraitEnvironment_UIWindow_getTraitCollection(UIWindow *self, SEL _cmd) {
-    return [self MRGTraitEnvironment_UIWindow_getTraitCollection];
+    [self MRGTraitEnvironment_UIView_setTraitCollection:traitCollection];
 }
 
 static void MRGTraitEnvironment_UIWindow_traitCollectionDidChange(UIWindow *self, SEL _cmd, UITraitCollection *previousTraitCollection) {
@@ -109,15 +108,15 @@ static void MRGTraitEnvironment_UIWindow_traitCollectionDidChange(UIWindow *self
         return;
     }
     
-    [UIWindow rt_addMethod:[RTMethod methodWithSelector:@selector(traitCollection)
-                                         implementation:(IMP)MRGTraitEnvironment_UIWindow_getTraitCollection
-                                              signature:[NSString stringWithFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)]]];
     [UIWindow rt_addMethod:[RTMethod methodWithSelector:@selector(traitCollectionDidChange:)
                                          implementation:(IMP)MRGTraitEnvironment_UIWindow_traitCollectionDidChange
                                               signature:[NSString stringWithFormat:@"%s%s%s%s", @encode(void), @encode(id), @encode(SEL), @encode(id)]]];
     
+    [self jr_swizzleMethod:@selector(MRGTraitEnvironment_UIView_setTraitCollection:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setTraitCollection:) error:NULL];
+    
     [self jr_swizzleMethod:@selector(initWithFrame:) withMethod:@selector(MRGTraitEnvironment_UIWindow_initWithFrame:) error:NULL];
     [self jr_swizzleMethod:@selector(initWithCoder:) withMethod:@selector(MRGTraitEnvironment_UIWindow_initWithCoder:) error:NULL];
+    [self jr_swizzleMethod:@selector(setScreen:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setScreen:) error:NULL];
     [self jr_swizzleMethod:@selector(setRootViewController:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setRootViewController:) error:NULL];
     [self jr_swizzleMethod:@selector(becomeKeyWindow) withMethod:@selector(MRGTraitEnvironment_UIWindow_becomeKeyWindow) error:NULL];
     [self jr_swizzleMethod:@selector(resignKeyWindow) withMethod:@selector(MRGTraitEnvironment_UIWindow_resignKeyWindow) error:NULL];
