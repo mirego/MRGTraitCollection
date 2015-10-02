@@ -105,28 +105,21 @@
 }
 
 - (NSString *)description {
-    NSMutableString *description = [NSMutableString new];
-    [description appendString:@"<"];
-    [description appendFormat:@"%@: %p; ", NSStringFromClass([self class]), self];
-    
+    NSMutableArray *description = [[NSMutableArray alloc] init];
     if (self.userInterfaceIdiom != UIUserInterfaceIdiomUnspecified) {
-        [description appendFormat:@"_UITraitNameUserInterfaceIdiom: %@, ", [MRGTraitCollection stringForUserInterfaceIdiom:self.userInterfaceIdiom]];
+        [description addObject:[NSString stringWithFormat:@"_UITraitNameUserInterfaceIdiom: %@", [MRGTraitCollection stringForUserInterfaceIdiom:self.userInterfaceIdiom]]];
     }
     if (self.displayScale != 0.0) {
-        [description appendFormat:@"_UITraitNameDisplayScale: %f, ", self.displayScale];
+        [description addObject:[NSString stringWithFormat:@"_UITraitNameDisplayScale: %f", self.displayScale]];
     }
     if (self.horizontalSizeClass != UIUserInterfaceSizeClassUnspecified) {
-        [description appendFormat:@"_UITraitNameHorizontalSizeClass: %@, ", [MRGTraitCollection stringForUserInterfaceSizeClass:self.horizontalSizeClass]];
+        [description addObject:[NSString stringWithFormat:@"_UITraitNameHorizontalSizeClass: %@", [MRGTraitCollection stringForUserInterfaceSizeClass:self.horizontalSizeClass]]];
     }
     if (self.verticalSizeClass != UIUserInterfaceSizeClassUnspecified) {
-        [description appendFormat:@"_UITraitNameVerticalSizeClass: %@, ", [MRGTraitCollection stringForUserInterfaceSizeClass:self.verticalSizeClass]];
+        [description addObject:[NSString stringWithFormat:@"_UITraitNameVerticalSizeClass: %@", [MRGTraitCollection stringForUserInterfaceSizeClass:self.verticalSizeClass]]];
     }
     
-    [description appendString:@"_UITraitNameTouchLevel = 0, "]; // FIXME
-    [description appendString:@"_UITraitNameInteractionModel = 1"]; // FIXME
-    [description appendString:@">"];
-    
-    return description;
+    return [NSString stringWithFormat:@"<%@: %p; %@>", NSStringFromClass([self class]), self, [description componentsJoinedByString:@", "]];
 }
 
 - (BOOL)isEqual:(id)object {
