@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MRGTraitCollection"
-  s.version          = "0.1.1"
+  s.version          = "0.2"
   s.summary          = "Backward compatibility layer for UITraitCollection in iOS 7."
   
   s.homepage         = "http://open.mirego.com"

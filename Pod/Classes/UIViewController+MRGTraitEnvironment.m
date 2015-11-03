@@ -37,12 +37,16 @@
 
 @implementation UIViewController (MRGTraitEnvironment)
 
+- (void)MRGTraitEnvironment_UIViewController_initTraitCollection {
+    [self MRGTraitEnvironment_UIViewController_setTraitCollection:(id)[MRGTraitCollection new]];
+}
+
 - (instancetype)MRGTraitEnvironment_UIViewController_initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     if (![self MRGTraitEnvironment_UIViewController_initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         return self;
     }
     
-    [self MRGTraitEnvironment_UIViewController_setTraitCollection:(id)[MRGTraitCollection new]];
+    [self MRGTraitEnvironment_UIViewController_initTraitCollection];
     return self;
 }
 
@@ -51,7 +55,7 @@
         return self;
     }
     
-    [self MRGTraitEnvironment_UIViewController_setTraitCollection:(id)[MRGTraitCollection new]];
+    [self MRGTraitEnvironment_UIViewController_initTraitCollection];
     return self;
 }
 

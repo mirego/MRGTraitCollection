@@ -37,12 +37,16 @@
 
 @implementation UIView (MRGTraitEnvironment)
 
-- (instancetype)MRGTraitEnvironment_UIView_initWithFrame:(CGRect)frame {
-    if (![self MRGTraitEnvironment_UIView_initWithFrame:frame]) {
+- (void)MRGTraitEnvironment_UIView_initTraitCollection {
+    [self MRGTraitEnvironment_UIView_setTraitCollection:(id)[MRGTraitCollection new]];
+}
+
+- (instancetype)MRGTraitEnvironment_UIView_init {
+    if (![self MRGTraitEnvironment_UIView_init]) {
         return self;
     }
     
-    [self MRGTraitEnvironment_UIView_setTraitCollection:(id)[MRGTraitCollection new]];
+    [self MRGTraitEnvironment_UIView_initTraitCollection];
     return self;
 }
 
@@ -51,7 +55,7 @@
         return self;
     }
     
-    [self MRGTraitEnvironment_UIView_setTraitCollection:(id)[MRGTraitCollection new]];
+    [self MRGTraitEnvironment_UIView_initTraitCollection];
     return self;
 }
 
@@ -96,7 +100,7 @@ static void MRGTraitEnvironment_UIView_traitCollectionDidChange(UIView *self, SE
                                        implementation:(IMP)MRGTraitEnvironment_UIView_traitCollectionDidChange
                                             signature:[NSString stringWithFormat:@"%s%s%s%s", @encode(void), @encode(id), @encode(SEL), @encode(id)]]];
     
-    [self jr_swizzleMethod:@selector(initWithFrame:) withMethod:@selector(MRGTraitEnvironment_UIView_initWithFrame:) error:NULL];
+    [self jr_swizzleMethod:@selector(init) withMethod:@selector(MRGTraitEnvironment_UIView_init) error:NULL];
     [self jr_swizzleMethod:@selector(initWithCoder:) withMethod:@selector(MRGTraitEnvironment_UIView_initWithCoder:) error:NULL];
 }
 

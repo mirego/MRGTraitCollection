@@ -37,15 +37,18 @@
 
 @implementation UIWindow (MRGTraitEnvironment)
 
-- (instancetype)MRGTraitEnvironment_UIWindow_initWithFrame:(CGRect)frame {
-    if (![self MRGTraitEnvironment_UIWindow_initWithFrame:frame]) {
-        return self;
-    }
-    
+- (void)MRGTraitEnvironment_UIWindow_initTraitCollection {
     if ([self screen]) {
         [self MRGTraitEnvironment_UIView_setTraitCollection:[self.screen traitCollection]];
     }
-    
+}
+
+- (instancetype)MRGTraitEnvironment_UIWindow_init {
+    if (![self MRGTraitEnvironment_UIWindow_init]) {
+        return self;
+    }
+
+    [self MRGTraitEnvironment_UIWindow_initTraitCollection];
     return self;
 }
 
@@ -54,10 +57,7 @@
         return self;
     }
     
-    if ([self screen]) {
-        [self MRGTraitEnvironment_UIView_setTraitCollection:[self.screen traitCollection]];
-    }
-    
+    [self MRGTraitEnvironment_UIWindow_initTraitCollection];
     return self;
 }
 
@@ -114,7 +114,7 @@ static void MRGTraitEnvironment_UIWindow_traitCollectionDidChange(UIWindow *self
     
     [self jr_swizzleMethod:@selector(MRGTraitEnvironment_UIView_setTraitCollection:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setTraitCollection:) error:NULL];
     
-    [self jr_swizzleMethod:@selector(initWithFrame:) withMethod:@selector(MRGTraitEnvironment_UIWindow_initWithFrame:) error:NULL];
+    [self jr_swizzleMethod:@selector(init) withMethod:@selector(MRGTraitEnvironment_UIWindow_init) error:NULL];
     [self jr_swizzleMethod:@selector(initWithCoder:) withMethod:@selector(MRGTraitEnvironment_UIWindow_initWithCoder:) error:NULL];
     [self jr_swizzleMethod:@selector(setScreen:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setScreen:) error:NULL];
     [self jr_swizzleMethod:@selector(setRootViewController:) withMethod:@selector(MRGTraitEnvironment_UIWindow_setRootViewController:) error:NULL];
